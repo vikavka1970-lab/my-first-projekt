@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Голосовой ввод для Claude</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      background: #1a1a1a;
+      color: #fff;
+    }
+    h2 {
+      text-align: center;
+      color: #ccc;
+    }
+    #status {
+      text-align: center;
+      color: #888;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    #output {
+      width: 100%;
+      min-height: 150px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 16px;
+      color: #fff;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    button {
+      flex: 1;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #btnStart {
+      background: #e44;
+      color: #fff;
+    }
+    #btnStart.listening {
+      background: #4a4;
+      animation: pulse 1s infinite;
+    }
+    #btnCopy {
+      background: #444;
+      color: #fff;
+    }
+    #btnClear {
+      background: #333;
+      color: #aaa;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    #copyMsg {
+      text-align: center;
+      color: #4a4;
+      margin-top: 10px;
+      font-size: 14px;
+      height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Голосовой ввод</h2>
+  <div id="status">Нажми "Говорить" и диктуй</div>
+  <textarea id="output" placeholder="Здесь появится текст..."></textarea>
+  <div class="buttons">
+    <button id="btnStart" onclick="toggleListen()">Говорить</button>
+    <button id="btnCopy" onclick="copyText()">Копировать</button>
+    <button id="btnClear" onclick="clearText()">Очистить</button>
+  </div>
+  <div id="copyMsg"></div>
+
+  <script>
+    const output = document.getElementById('output');
+    const btnStart = document.getElementById('btnStart');
+    const status = document.getElementById('status');
+    const copyMsg = document.getElementById('copyMsg');
+
+    let recognition;
+    let listening = false;
+    let finalText = '';
+
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      status.textContent = 'Этот браузер не поддерживает голосовой ввод. Используй Chrome или Edge.';
+      btnStart.disabled = true;
+    } else {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SR();
+      recognition.lang = 'ru-RU';
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      recognition.onresult = (e) => {
+        let interim = '';
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          if (e.results[i].isFinal) {
+            finalText += e.results[i][0].transcript + ' ';
+          } else {
+            interim += e.results[i][0].transcript;
+          }
+        }
+        output.value = finalText + interim;
+      };
+
+      recognition.onerror = (e) => {
+        status.textContent = 'Ошибка: ' + e.error;
+        stopListening();
+      };
+
+      recognition.onend = () => {
+        if (listening) recognition.start();
+      };
+    }
+
+    function toggleListen() {
+      if (listening) {
+        stopListening();
+      } else {
+        startListening();
+      }
+    }
+
+    function startListening() {
+      finalText = output.value;
+      recognition.start();
+      listening = true;
+      btnStart.textContent = 'Стоп';
+      btnStart.classList.add('listening');
+      status.textContent = 'Слушаю... говори';
+    }
+
+    function stopListening() {
+      recognition.stop();
+      listening = false;
+      btnStart.textContent = 'Говорить';
+      btnStart.classList.remove('listening');
+      status.textContent = 'Готово. Скопируй текст и вставь в Claude (Ctrl+V)';
+    }
+
+    function copyText() {
+      const text = output.value.trim();
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        copyMsg.textContent = 'Скопировано! Нажми Ctrl+V в Claude';
+        output.value = '';
+        finalText = '';
+        setTimeout(() => copyMsg.textContent = '', 4000);
+      });
+    }
+
+    function clearText() {
+      output.value = '';
+      finalText = '';
+      status.textContent = 'Нажми "Говорить" и диктуй';
+    }
+  </script>
+</body>
+</html>
