@@ -516,6 +516,35 @@
   </div>
 </section>
 
+<!-- PROMO -->
+<section style="padding: 60px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index:1;">
+  <div style="background: linear-gradient(135deg, rgba(45,106,79,0.3), rgba(212,160,23,0.15)); border: 1px solid rgba(212,160,23,0.4); border-radius: 24px; padding: 40px 36px; text-align: center;">
+    <div style="display: inline-block; background: rgba(212,160,23,0.2); border: 1px solid rgba(212,160,23,0.5); border-radius: 30px; padding: 6px 20px; font-size: 0.8rem; color: #d4a017; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px;">🎁 Акция до 12 апреля</div>
+    <h2 style="font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; color: #fff; margin-bottom: 8px;">Запишитесь на экскурсию и выберите подарок</h2>
+    <p style="color: rgba(255,255,255,0.5); margin-bottom: 32px; font-size: 0.95rem;">Один подарок на ваш выбор при записи на экскурсию до 12 апреля</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; text-align: left; max-width: 560px; margin: 0 auto;">
+      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.3); border-radius: 14px; padding: 24px; display: flex; align-items: flex-start; gap: 12px;">
+        <span style="font-size: 2rem;">🏊</span>
+        <div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 4px;">Бассейн к дому</div>
+          <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5);">В подарок без доплаты</div>
+        </div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.3); border-radius: 14px; padding: 24px; display: flex; align-items: flex-start; gap: 12px;">
+        <span style="font-size: 2rem;">🌿</span>
+        <div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 4px;">Участок земли</div>
+          <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5);">В подарок без доплаты</div>
+        </div>
+      </div>
+    </div>
+    <a href="https://t.me/viktoriapoltavchenko" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; padding: 16px 36px; background: linear-gradient(135deg, #d4a017, #f0c040); color: #0d1f0f; text-decoration: none; border-radius: 14px; font-size: 1rem; font-weight: 800;">
+      Записаться на экскурсию
+    </a>
+    <p style="margin-top: 12px; font-size: 0.75rem; color: rgba(255,255,255,0.3);">* Не является офертой, условия уточняйте на показе</p>
+  </div>
+</section>
+
 <!-- GALLERY -->
 <section style="padding: 80px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index:1;">
   <h2 class="section-title">Реальные дома из нашего поселка</h2>
@@ -640,14 +669,28 @@
 <!-- CALCULATOR -->
 <section class="calculator">
   <h2 class="section-title">Рассчитайте свой платёж</h2>
-  <p class="section-sub">Узнайте сколько стоит дом вашей мечты в месяц</p>
+  <p class="section-sub">Реальные цены из каталога — без округлений</p>
   <div class="calc-box">
+
     <div class="calc-row">
-      <div class="calc-label">
-        Стоимость дома: <span id="priceVal">2 509 000 ₽</span>
+      <div class="calc-label">Тип дома:</div>
+      <div class="calc-toggle" id="typeToggle">
+        <button class="active" onclick="setType(0)">Шале</button>
+        <button onclick="setType(1)">Барнхаус</button>
+        <button onclick="setType(2)">Хай-тек</button>
       </div>
-      <input type="range" id="priceRange" min="2509000" max="4746457" step="10000" value="2509000" oninput="calcUpdate()">
     </div>
+
+    <div class="calc-row">
+      <div class="calc-label">Площадь:</div>
+      <div class="calc-toggle" id="areaToggle">
+        <button class="active" onclick="setArea(0)">51 м²</button>
+        <button onclick="setArea(1)">74 м²</button>
+        <button onclick="setArea(2)">89 м²</button>
+        <button onclick="setArea(3)">110 м²</button>
+      </div>
+    </div>
+
     <div class="calc-row">
       <div class="calc-label">Срок рассрочки:</div>
       <div class="calc-toggle">
@@ -655,20 +698,22 @@
         <button id="btn36" class="active" onclick="setTerm(36)">36 месяцев</button>
       </div>
     </div>
+
     <div class="calc-result">
       <div class="calc-result-item">
-        <label>Первый взнос (~35%)</label>
-        <strong id="downVal">878 150 ₽</strong>
+        <label>Стоимость дома</label>
+        <strong id="priceVal">2 509 000 ₽</strong>
       </div>
       <div class="calc-result-item">
-        <label>Остаток</label>
-        <strong id="restVal">1 630 850 ₽</strong>
+        <label>Первый взнос</label>
+        <strong id="downVal">875 000 ₽</strong>
       </div>
       <div class="calc-result-item">
         <label>Платёж в месяц</label>
-        <strong id="monthVal">45 302 ₽</strong>
+        <strong id="monthVal">45 392 ₽</strong>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -712,10 +757,50 @@
 </footer>
 
 <script>
+  // Данные точно из каталога: цена, первый взнос, платёж за 36 мес
+  const catalog = {
+    0: [ // Шале
+      { price: 2509000, down: 875000,  m36: 45392 },
+      { price: 3203929, down: 1216000, m36: 55199 },
+      { price: 3898066, down: 1557685, m36: 65006 },
+      { price: 4746457, down: 1974752, m36: 76992 },
+    ],
+    1: [ // Барнхаус
+      { price: 2509000, down: 875000,  m36: 45392 },
+      { price: 3203929, down: 1216000, m36: 55199 },
+      { price: 3657660, down: 1557685, m36: 65006 },
+      { price: 4746457, down: 1974752, m36: 76992 },
+    ],
+    2: [ // Хай-тек
+      { price: 2509000, down: 875000,  m36: 45392 },
+      { price: 3203929, down: 1216000, m36: 55199 },
+      { price: 3657660, down: 1557685, m36: 65006 },
+      { price: 4746457, down: 1974752, m36: 76992 },
+    ],
+  };
+
+  let currentType = 0;
+  let currentArea = 0;
   let term = 36;
 
   function fmt(n) {
     return Math.round(n).toLocaleString('ru-RU') + ' ₽';
+  }
+
+  function setType(i) {
+    currentType = i;
+    document.getElementById('typeToggle').querySelectorAll('button').forEach((b, j) => {
+      b.classList.toggle('active', i === j);
+    });
+    calcUpdate();
+  }
+
+  function setArea(i) {
+    currentArea = i;
+    document.getElementById('areaToggle').querySelectorAll('button').forEach((b, j) => {
+      b.classList.toggle('active', i === j);
+    });
+    calcUpdate();
   }
 
   function setTerm(t) {
@@ -726,14 +811,10 @@
   }
 
   function calcUpdate() {
-    const price = parseInt(document.getElementById('priceRange').value);
-    const down = Math.round(price * 0.35);
-    const rest = price - down;
-    const monthly = Math.round(rest / term);
-
-    document.getElementById('priceVal').textContent = fmt(price);
-    document.getElementById('downVal').textContent = fmt(down);
-    document.getElementById('restVal').textContent = fmt(rest);
+    const h = catalog[currentType][currentArea];
+    const monthly = term === 36 ? h.m36 : Math.round((h.price - h.down) / 24);
+    document.getElementById('priceVal').textContent = fmt(h.price);
+    document.getElementById('downVal').textContent = fmt(h.down);
     document.getElementById('monthVal').textContent = fmt(monthly);
   }
 
