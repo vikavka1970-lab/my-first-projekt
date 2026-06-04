@@ -1040,26 +1040,18 @@
       </div>
     </div>
 
-    <div class="calc-row">
-      <div class="calc-label">Срок рассрочки:</div>
-      <div class="calc-toggle">
-        <button id="btn24" onclick="setTerm(24)">24 месяца</button>
-        <button id="btn36" class="active" onclick="setTerm(36)">36 месяцев</button>
-      </div>
-    </div>
-
     <div class="calc-result">
       <div class="calc-result-item">
         <label>Стоимость дома</label>
-        <strong id="priceVal">2 509 000 ₽</strong>
+        <strong id="priceVal">—</strong>
       </div>
       <div class="calc-result-item">
         <label>Первый взнос</label>
-        <strong id="downVal">875 000 ₽</strong>
+        <strong id="downVal">—</strong>
       </div>
       <div class="calc-result-item">
-        <label>Платёж в месяц</label>
-        <strong id="monthVal">45 392 ₽</strong>
+        <label>Платёж в месяц (36 мес)</label>
+        <strong id="monthVal">—</strong>
       </div>
     </div>
 
@@ -1217,17 +1209,16 @@
 </footer>
 
 <script>
-  // Данные из каталога застройщика: минимальная цена, взнос 47%, платёж за 36 мес
+  // Данные из каталога застройщика: круглогодичные дома, цена + взнос + платёж за 36 мес
   const catalog = [
-    { price: 2500000, down: 1175000, m36: 47224 },
-    { price: 2900000, down: 1363000, m36: 55644 },
-    { price: 3600000, down: 1692000, m36: 69696 },
-    { price: 4100000, down: 1927000, m36: 80903 },
-    { price: 4900000, down: 2303000, m36: 97942 },
+    { price: 3523736, down: 1882002, m36: 45604 },
+    { price: 4147303, down: 2222202, m36: 53475 },
+    { price: 5186582, down: 2789202, m36: 66594 },
+    { price: 6018005, down: 3242802, m36: 77089 },
+    { price: 7265140, down: 3923202, m36: 92831 },
   ];
 
   let currentArea = 0;
-  let term = 36;
 
   function fmt(n) {
     return Math.round(n).toLocaleString('ru-RU') + ' ₽';
@@ -1241,19 +1232,11 @@
     calcUpdate();
   }
 
-  function setTerm(t) {
-    term = t;
-    document.getElementById('btn24').classList.toggle('active', t === 24);
-    document.getElementById('btn36').classList.toggle('active', t === 36);
-    calcUpdate();
-  }
-
   function calcUpdate() {
     const h = catalog[currentArea];
-    const monthly = term === 36 ? h.m36 : Math.round((h.price - h.down) / 24);
-    document.getElementById('priceVal').textContent = 'от ' + fmt(h.price);
-    document.getElementById('downVal').textContent = 'от ' + fmt(h.down);
-    document.getElementById('monthVal').textContent = 'от ' + fmt(monthly);
+    document.getElementById('priceVal').textContent = fmt(h.price);
+    document.getElementById('downVal').textContent = fmt(h.down);
+    document.getElementById('monthVal').textContent = fmt(h.m36);
   }
 
   calcUpdate();
