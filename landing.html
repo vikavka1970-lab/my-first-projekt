@@ -543,6 +543,76 @@
       color: rgba(255,255,255,0.15);
       font-size: 0.78rem;
     }
+
+    /* INCLUDES */
+    .includes-section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
+    .includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 14px; margin-top: 40px; }
+    .includes-item { display: flex; align-items: flex-start; gap: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(82,183,136,.15); border-radius: 16px; padding: 20px 22px; transition: transform .2s, border-color .2s; }
+    .includes-item:hover { transform: translateY(-3px); border-color: rgba(82,183,136,.35); }
+    .includes-check { width: 26px; height: 26px; border-radius: 50%; background: rgba(82,183,136,.2); border: 1.5px solid rgba(82,183,136,.5); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .includes-check svg { width: 13px; height: 13px; }
+    .includes-item p { font-size: .9rem; color: rgba(255,255,255,.7); line-height: 1.6; }
+
+    /* STEPS */
+    .steps-section { padding: 80px 20px; background: rgba(255,255,255,.02); }
+    .steps-inner { max-width: 860px; margin: 0 auto; }
+    .steps-list { margin-top: 48px; display: flex; flex-direction: column; }
+    .step-item { display: flex; gap: 20px; position: relative; padding-bottom: 32px; }
+    .step-item:last-child { padding-bottom: 0; }
+    .step-item:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 44px; width: 2px; bottom: 8px; background: linear-gradient(to bottom,rgba(82,183,136,.4),rgba(82,183,136,.05)); }
+    .step-num { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#2d6a4f,#52b788); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: #fff; flex-shrink: 0; box-shadow: 0 0 16px rgba(82,183,136,.3); }
+    .step-content { padding-top: 8px; }
+    .step-content p { font-size: .95rem; color: rgba(255,255,255,.65); line-height: 1.7; }
+
+    /* QUIZ */
+    .quiz-section { padding: 80px 20px; max-width: 720px; margin: 0 auto; }
+    .quiz-box { background: rgba(255,255,255,.04); border: 1px solid rgba(82,183,136,.2); border-radius: 24px; padding: 40px 36px; }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-title { font-size: clamp(1.2rem,3vw,1.6rem); font-weight: 800; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+    .quiz-sub { font-size: .88rem; color: rgba(255,255,255,.45); }
+    .quiz-progress { display: flex; gap: 6px; margin-bottom: 8px; }
+    .quiz-dot { height: 4px; border-radius: 2px; background: rgba(255,255,255,.1); flex: 1; transition: background .3s; }
+    .quiz-dot.done { background: #52b788; }
+    .quiz-dot.curr { background: rgba(82,183,136,.5); }
+    .quiz-step-hint { font-size: .75rem; color: rgba(255,255,255,.3); margin-bottom: 20px; }
+    .quiz-q-label { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 18px; line-height: 1.45; }
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .quiz-option { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid rgba(255,255,255,.1); border-radius: 11px; cursor: pointer; transition: border-color .2s, background .2s; user-select: none; }
+    .quiz-option:hover { border-color: rgba(82,183,136,.4); background: rgba(82,183,136,.06); }
+    .quiz-option.selected { border-color: #52b788; background: rgba(82,183,136,.12); }
+    .quiz-option input[type=radio] { width: 16px; height: 16px; accent-color: #52b788; cursor: pointer; flex-shrink: 0; }
+    .quiz-option-label { font-size: .92rem; color: rgba(255,255,255,.75); }
+    .quiz-nav { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .quiz-btn-back { padding: 11px 22px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; background: transparent; color: rgba(255,255,255,.5); font-size: .88rem; cursor: pointer; transition: all .2s; font-family: inherit; }
+    .quiz-btn-back:hover { border-color: rgba(255,255,255,.3); color: #fff; }
+    .quiz-btn-next { flex: 1; padding: 13px 24px; border: none; border-radius: 12px; background: linear-gradient(135deg,#2d6a4f,#52b788); color: #fff; font-size: .95rem; font-weight: 700; cursor: pointer; transition: opacity .2s, transform .2s; font-family: inherit; }
+    .quiz-btn-next:hover:not(:disabled) { opacity: .9; transform: translateY(-1px); }
+    .quiz-btn-next:disabled { opacity: .35; cursor: default; }
+    .quiz-final { display: none; }
+    .quiz-final-title { font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 10px; text-align: center; }
+    .quiz-final-text { font-size: .88rem; color: rgba(255,255,255,.5); text-align: center; line-height: 1.65; margin-bottom: 26px; }
+    .quiz-form { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-input { padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(82,183,136,.25); background: rgba(255,255,255,.04); color: #fff; font-size: .92rem; outline: none; transition: border-color .2s; width: 100%; font-family: inherit; }
+    .quiz-input::placeholder { color: rgba(255,255,255,.3); }
+    .quiz-input:focus { border-color: rgba(82,183,136,.5); }
+    .quiz-submit { padding: 15px; border: none; border-radius: 13px; background: linear-gradient(135deg,#2d6a4f,#52b788); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform .2s, opacity .2s; margin-top: 4px; font-family: inherit; }
+    .quiz-submit:hover { transform: translateY(-2px); opacity: .9; }
+    .quiz-disclaimer { text-align: center; font-size: .75rem; color: rgba(255,255,255,.25); margin-top: 8px; }
+    @media (max-width: 500px) { .quiz-box { padding: 24px 16px; } }
+
+    /* FAQ */
+    .faq-section { padding: 80px 20px; max-width: 860px; margin: 0 auto; }
+    .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: rgba(255,255,255,.04); border: 1px solid rgba(82,183,136,.12); border-radius: 14px; overflow: hidden; transition: border-color .2s; }
+    .faq-item.open { border-color: rgba(82,183,136,.4); }
+    .faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px; background: transparent; border: none; cursor: pointer; color: #fff; font-size: .97rem; font-weight: 600; text-align: left; line-height: 1.4; transition: color .2s; font-family: inherit; }
+    .faq-q:hover, .faq-item.open .faq-q { color: #52b788; }
+    .faq-arrow { width: 18px; height: 18px; flex-shrink: 0; transition: transform .3s; opacity: .5; color: #52b788; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); opacity: 1; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; padding: 0 22px; }
+    .faq-a p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.7; padding-bottom: 18px; }
+    .faq-item.open .faq-a { max-height: 400px; }
+
   </style>
 </head>
 <body>
@@ -565,7 +635,7 @@
   <div class="hero-tag">Загородная недвижимость · Подмосковье</div>
   <h1>Готовый дом с участком — без ипотеки и переплат</h1>
   <p class="hero-sub">
-    Покупайте напрямую от застройщика по себестоимости. Без банка, без процентов — только рассрочка на ваших условиях.
+    Покупайте напрямую от застройщика — по ценам без агентских надбавок. Без банка, без процентов — только рассрочка на ваших условиях.
   </p>
   <div class="hero-price">от <span>2 500 000 ₽</span> в рассрочку на 36 месяцев</div>
   <a href="https://t.me/viktoriapoltavchenko" target="_blank" class="btn-cta">
@@ -651,7 +721,7 @@
 <section style="padding: 70px 20px; position: relative; z-index:1;">
   <div style="max-width: 1100px; margin: 0 auto;">
     <h2 class="section-title">Почему можно доверять</h2>
-    <p class="section-sub">Клубный дачный поселок — всё включено</p>
+    <p class="section-sub">Клубный дачный поселок — всё необходимое уже есть</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
 
       <div class="trust-card">
@@ -794,8 +864,8 @@
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
       </div>
-      <h3>Цена по себестоимости</h3>
-      <p>Никаких агентских надбавок и скрытых комиссий. Вы платите ровно столько, сколько стоит строительство — от 2,5 млн ₽.</p>
+      <h3>Цена напрямую от застройщика</h3>
+      <p>Никаких агентских надбавок и скрытых комиссий. Покупаете напрямую — от 2,5 млн ₽.</p>
     </div>
     <div class="card">
       <div class="card-icon cyan">
@@ -816,6 +886,44 @@
       </div>
       <h3>Готовый дом — сразу живи</h3>
       <p>Дом полностью готов к проживанию. Никакого долгостроя и ремонта — заезжай и живи уже сейчас.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDES -->
+<section class="includes-section" id="includes" style="position: relative; z-index: 1;">
+  <h2 class="section-title">Что входит в стоимость</h2>
+  <p class="section-sub">Всё, что нужно — уже в комплекте</p>
+  <div class="includes-grid">
+    <div class="includes-item">
+      <div class="includes-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p>Готовый загородный дом с чистовой отделкой — можно заезжать без долгого ремонта</p>
+    </div>
+    <div class="includes-item">
+      <div class="includes-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p>Участок в Подмосковье в составе поселка от застройщика</p>
+    </div>
+    <div class="includes-item">
+      <div class="includes-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p>Подбор подходящего варианта по бюджету и цели покупки — для жизни, дачи или инвестиции</p>
+    </div>
+    <div class="includes-item">
+      <div class="includes-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p>Возможность оформить рассрочку до 36 месяцев без банка и лишней бюрократии</p>
+    </div>
+    <div class="includes-item">
+      <div class="includes-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p>Сопровождение на всех этапах: от каталога и экскурсии до выбора дома и сделки</p>
     </div>
   </div>
 </section>
@@ -862,6 +970,36 @@
           </svg>
         </div>
         <p>Семья с детьми, которая мечтает о своём доме и участке в Подмосковье</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="steps-section" id="process" style="position: relative; z-index: 1;">
+  <div class="steps-inner">
+    <h2 class="section-title">Как проходит покупка</h2>
+    <p class="section-sub">Просто и понятно — от запроса до ключей</p>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content"><p>Вы оставляете заявку или пишете в Telegram, чтобы получить каталог домов и актуальные цены</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content"><p>Мы подбираем подходящие варианты по бюджету, формату дома и условиям оплаты</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content"><p>Вы выбираете интересные объекты и приезжаете на экскурсию, чтобы посмотреть дома вживую</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content"><p>После выбора дома согласовываются условия покупки и рассрочки, если она нужна</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content"><p>Вы переходите к оформлению и получаете сопровождение по сделке от менеджера застройщика</p></div>
       </div>
     </div>
   </div>
@@ -922,6 +1060,106 @@
         <label>Платёж в месяц</label>
         <strong id="monthVal">45 392 ₽</strong>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz" style="position: relative; z-index: 1;">
+  <div class="quiz-box">
+    <div id="quizSteps">
+      <div class="quiz-header">
+        <div class="quiz-title">Подберем дом в Подмосковье под ваш бюджет и задачу</div>
+        <div class="quiz-sub">Ответьте на 5 вопросов — пришлем подходящие варианты и цены</div>
+      </div>
+      <div class="quiz-progress">
+        <div class="quiz-dot" id="qd0"></div>
+        <div class="quiz-dot" id="qd1"></div>
+        <div class="quiz-dot" id="qd2"></div>
+        <div class="quiz-dot" id="qd3"></div>
+        <div class="quiz-dot" id="qd4"></div>
+      </div>
+      <div class="quiz-step-hint" id="quizStepHint">Шаг 1 из 5</div>
+      <div id="quizQuestion"></div>
+      <div class="quiz-nav">
+        <button class="quiz-btn-back" id="quizBack" onclick="quizBack()" style="display:none">← Назад</button>
+        <button class="quiz-btn-next" id="quizNext" onclick="quizNext()" disabled>Далее →</button>
+      </div>
+    </div>
+    <div class="quiz-final" id="quizFinal">
+      <div class="quiz-final-title">Готово — осталось получить подборку</div>
+      <div class="quiz-final-text">Мы подберем для вас подходящие дома в Подмосковье по бюджету и условиям покупки и отправим актуальные цены удобным способом.</div>
+      <div class="quiz-form">
+        <input class="quiz-input" id="quizName" type="text" placeholder="Ваше имя" />
+        <input class="quiz-input" id="quizPhone" type="tel" placeholder="Телефон" />
+        <input class="quiz-input" id="quizContact" type="text" placeholder="Telegram или WhatsApp (необязательно)" />
+        <button class="quiz-submit" onclick="quizSubmit()">Получить подборку домов</button>
+        <p class="quiz-disclaimer">Без обязательств — просто пришлем подходящие варианты и ответим на вопросы</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq" style="position: relative; z-index: 1;">
+  <h2 class="section-title">Часто задаваемые вопросы</h2>
+  <div class="faq-list">
+
+    <div class="faq-item" id="faq0">
+      <button class="faq-q" onclick="toggleFaq(0)">Сколько стоят дома?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Стоимость зависит от площади, формата дома, участка и условий покупки. Актуальные варианты и цены мы отправляем в каталоге, сейчас старт — от 2,5 млн ₽.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq1">
+      <button class="faq-q" onclick="toggleFaq(1)">Правда ли можно купить без банка?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Да, застройщик предлагает рассрочку до 36 месяцев без банка и без процентов. Конкретные условия, первоначальный взнос и график платежей уточняются по выбранному объекту.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq2">
+      <button class="faq-q" onclick="toggleFaq(2)">Дома уже готовы или это строительство под заказ?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Речь идет о готовых домах с чистовой отделкой, в которые можно заезжать сразу. Наличие конкретных домов лучше подтверждать в каталоге и при записи на экскурсию.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq3">
+      <button class="faq-q" onclick="toggleFaq(3)">Что именно входит в стоимость?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Базово — это готовый дом и условия покупки напрямую от застройщика. Точный состав (дом, участок, отделка, комплектация, условия рассрочки) лучше смотреть в каталоге и на экскурсии.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq4">
+      <button class="faq-q" onclick="toggleFaq(4)">Можно ли приехать и посмотреть дома лично?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Да, запись на экскурсию — один из главных сценариев на сайте. Это лучший способ увидеть дом, участок и поселок вживую, а также задать вопросы по цене и покупке.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq5">
+      <button class="faq-q" onclick="toggleFaq(5)">Как проходит покупка?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Сначала вы получаете каталог и выбираете подходящие варианты, потом согласовываете просмотр и приезжаете на экскурсию. После выбора дома менеджер сопровождает вас по сделке.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq6">
+      <button class="faq-q" onclick="toggleFaq(6)">Кто будет со мной на связи?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Менеджер по продажам от застройщика — Виктория Полтавченко. Через нее можно получить каталог, актуальные цены и записаться на экскурсию.</p></div>
+    </div>
+
+    <div class="faq-item" id="faq7">
+      <button class="faq-q" onclick="toggleFaq(7)">Это подходит только для дачи или для постоянного проживания тоже?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a"><p>Готовые загородные дома в Подмосковье подходят и для постоянной жизни, и для сезонного формата. Конкретный сценарий зависит от выбранного дома, площади, участка и ваших задач.</p></div>
     </div>
 
   </div>
@@ -1007,6 +1245,80 @@
   }
 
   calcUpdate();
+</script>
+
+<script>
+  // QUIZ
+  const quizData = [
+    { q: 'Для чего вам нужен дом?', opts: ['Для постоянного проживания','Для дачи и отдыха','Для семьи с детьми','Для инвестиции или сдачи'] },
+    { q: 'Какой бюджет рассматриваете?', opts: ['До 3 млн ₽','3–4 млн ₽','4–5 млн ₽','От 5 млн ₽'] },
+    { q: 'Нужна ли рассрочка?', opts: ['Да, нужна рассрочка','Возможно, хочу узнать условия','Нет, рассматриваю полную оплату'] },
+    { q: 'Когда планируете покупку?', opts: ['В ближайшие 2 недели','В течение месяца','В течение 2–3 месяцев','Пока изучаю варианты'] },
+    { q: 'Куда отправить подборку домов и цены?', opts: ['В Telegram','В WhatsApp','Перезвоните мне'] }
+  ];
+
+  let qStep = 0;
+  const qAnswers = new Array(5).fill(null);
+
+  function quizRender() {
+    const step = quizData[qStep];
+    let html = '<div class="quiz-q-label">' + step.q + '</div><div class="quiz-options">';
+    step.opts.forEach((opt, i) => {
+      const sel = qAnswers[qStep] === i ? ' selected' : '';
+      html += '<label class="quiz-option' + sel + '" onclick="quizSelect(' + i + ')">'
+        + '<input type="radio" name="q' + qStep + '" value="' + i + '"' + (qAnswers[qStep] === i ? ' checked' : '') + ' onclick="event.stopPropagation()">'
+        + '<span class="quiz-option-label">' + opt + '</span></label>';
+    });
+    html += '</div>';
+    document.getElementById('quizQuestion').innerHTML = html;
+
+    for (let i = 0; i < 5; i++) {
+      document.getElementById('qd' + i).className = 'quiz-dot' + (i < qStep ? ' done' : i === qStep ? ' curr' : '');
+    }
+    document.getElementById('quizStepHint').textContent = 'Шаг ' + (qStep + 1) + ' из 5';
+    document.getElementById('quizBack').style.display = qStep > 0 ? '' : 'none';
+    document.getElementById('quizNext').disabled = qAnswers[qStep] === null;
+    document.getElementById('quizNext').textContent = qStep === 4 ? 'Продолжить →' : 'Далее →';
+  }
+
+  function quizSelect(i) {
+    qAnswers[qStep] = i;
+    document.querySelectorAll('#quizQuestion .quiz-option').forEach((el, j) => {
+      el.classList.toggle('selected', j === i);
+      el.querySelector('input').checked = j === i;
+    });
+    document.getElementById('quizNext').disabled = false;
+  }
+
+  function quizNext() {
+    if (qAnswers[qStep] === null) return;
+    if (qStep < 4) { qStep++; quizRender(); }
+    else {
+      document.getElementById('quizSteps').style.display = 'none';
+      document.getElementById('quizFinal').style.display = 'block';
+    }
+  }
+
+  function quizBack() {
+    if (qStep > 0) { qStep--; quizRender(); }
+  }
+
+  function quizSubmit() {
+    const choice = qAnswers[4];
+    if (choice === 1) window.open('https://wa.me/79264114496', '_blank');
+    else if (choice === 2) window.location.href = 'tel:+79264114469';
+    else window.open('https://t.me/viktoriapoltavchenko', '_blank');
+  }
+
+  quizRender();
+
+  // FAQ
+  function toggleFaq(i) {
+    const item = document.getElementById('faq' + i);
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
 </script>
 
 <!-- FLOATING BUTTONS -->
