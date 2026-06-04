@@ -413,6 +413,7 @@
 
     .calc-toggle {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-top: 8px;
     }
@@ -635,7 +636,7 @@
   <div class="hero-tag">Загородная недвижимость · Подмосковье</div>
   <h1>Свой дом в Подмосковье с участком — без ипотеки и переплат</h1>
   <p class="hero-sub">
-    Покупайте напрямую от застройщика по выгодным ценам. Без банка, без переплат — рассрочка на 36 месяцев.
+    Покупайте напрямую от застройщика по выгодным ценам. Без банка, без ипотечных переплат — рассрочка на 36 месяцев.
   </p>
   <div class="hero-price">от <span>2 500 000 ₽</span> в рассрочку на 36 месяцев</div>
   <a href="https://t.me/viktoriapoltavchenko" target="_blank" class="btn-cta">
@@ -959,7 +960,7 @@
             <polyline points="17 6 23 6 23 12"/>
           </svg>
         </div>
-        <p>Ищете выгодную инвестицию — дом по себестоимости растёт в цене</p>
+        <p>Ищете выгодную инвестицию — цена на этапе строительства ниже, чем у готового дома</p>
       </div>
       <div class="forwhom-item">
         <div class="forwhom-icon">
@@ -1017,7 +1018,7 @@
       frameborder="0"
       allowfullscreen
       allow="encrypted-media"
-      style="display:block;">
+      style="display:block; max-height: 56vw; min-height: 200px;">
     </iframe>
   </div>
 </section>
@@ -1088,6 +1089,7 @@
       </div>
     </div>
     <div class="quiz-final" id="quizFinal">
+      <button class="quiz-btn-back" onclick="quizBackToSteps()" style="margin-bottom:20px">← Назад к вопросам</button>
       <div class="quiz-final-title">Готово — осталось получить подборку</div>
       <div class="quiz-final-text">Мы подберем для вас подходящие дома в Подмосковье по бюджету и условиям покупки и отправим актуальные цены удобным способом.</div>
       <div class="quiz-form">
@@ -1096,6 +1098,16 @@
         <input class="quiz-input" id="quizContact" type="text" placeholder="Telegram или WhatsApp (необязательно)" />
         <button class="quiz-submit" onclick="quizSubmit()">Получить подборку домов</button>
         <p class="quiz-disclaimer">Без обязательств — просто пришлем подходящие варианты и ответим на вопросы</p>
+      </div>
+    </div>
+    <div id="quizSuccess" style="display:none; text-align:center;">
+      <div style="font-size:3rem; margin-bottom:12px;">✓</div>
+      <div class="quiz-final-title">Спасибо!</div>
+      <div class="quiz-final-text">Выберите, как отправить нам заявку. Текст уже готов — нажмите и отправьте.</div>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+        <a id="quizWaLink" href="#" target="_blank" style="display:block; padding:15px; border-radius:13px; background:linear-gradient(135deg,#1a9e4a,#25D366); color:#fff; font-weight:700; font-size:.95rem; text-decoration:none;">WhatsApp</a>
+        <a href="https://t.me/viktoriapoltavchenko" target="_blank" style="display:block; padding:15px; border-radius:13px; background:linear-gradient(135deg,#1a7ab5,#229ed9); color:#fff; font-weight:700; font-size:.95rem; text-decoration:none;">Telegram</a>
+        <a id="quizEmailLink" href="#" style="display:block; padding:15px; border-radius:13px; background:linear-gradient(135deg,#4f46e5,#6366f1); color:#fff; font-weight:700; font-size:.95rem; text-decoration:none;">Email</a>
       </div>
     </div>
   </div>
@@ -1303,6 +1315,13 @@
     if (qStep > 0) { qStep--; quizRender(); }
   }
 
+  function quizBackToSteps() {
+    document.getElementById('quizFinal').style.display = 'none';
+    document.getElementById('quizSteps').style.display = '';
+    qStep = 4;
+    quizRender();
+  }
+
   function quizSubmit() {
     const phone = document.getElementById('quizPhone').value.trim();
     const name = document.getElementById('quizName').value.trim();
@@ -1313,15 +1332,25 @@
       inp.addEventListener('input', function() { inp.style.borderColor = ''; }, { once: true });
       return;
     }
+    const contact = document.getElementById('quizContact').value.trim();
     const choice = qAnswers[4];
-    if (choice === 1) {
-      const msg = encodeURIComponent('Здравствуйте! Хочу получить подборку домов.' + (name ? '\nМеня зовут ' + name + '.' : '') + '\nМой телефон: ' + phone);
-      window.open('https://wa.me/79264114496?text=' + msg, '_blank');
-    } else if (choice === 2) {
-      window.location.href = 'tel:+79264114469';
-    } else {
-      window.open('https://t.me/viktoriapoltavchenko', '_blank');
-    }
+    const howMap = ['в Telegram', 'в WhatsApp', 'по телефону (прошу перезвонить)'];
+    const howText = howMap[choice] || '';
+    const msg = 'Здравствуйте! Хочу получить подборку домов.'
+      + (name ? '\nМеня зовут ' + name + '.' : '')
+      + '\nМой телефон: ' + phone
+      + (contact ? '\nTelegram / WhatsApp: ' + contact : '')
+      + (howText ? '\nУдобный способ связи: ' + howText : '');
+
+    navigator.clipboard.writeText(msg).catch(function() {});
+
+    document.getElementById('quizWaLink').href = 'https://wa.me/79264114496?text=' + encodeURIComponent(msg);
+    document.getElementById('quizEmailLink').href = 'mailto:vikavka1970@gmail.com?subject='
+      + encodeURIComponent('Заявка с сайта' + (name ? ' — ' + name : ''))
+      + '&body=' + encodeURIComponent(msg);
+
+    document.getElementById('quizFinal').style.display = 'none';
+    document.getElementById('quizSuccess').style.display = 'block';
   }
 
   quizRender();
