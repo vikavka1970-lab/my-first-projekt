@@ -1304,10 +1304,24 @@
   }
 
   function quizSubmit() {
+    const phone = document.getElementById('quizPhone').value.trim();
+    const name = document.getElementById('quizName').value.trim();
+    if (!phone) {
+      const inp = document.getElementById('quizPhone');
+      inp.style.borderColor = '#e74c3c';
+      inp.focus();
+      inp.addEventListener('input', function() { inp.style.borderColor = ''; }, { once: true });
+      return;
+    }
     const choice = qAnswers[4];
-    if (choice === 1) window.open('https://wa.me/79264114496', '_blank');
-    else if (choice === 2) window.location.href = 'tel:+79264114469';
-    else window.open('https://t.me/viktoriapoltavchenko', '_blank');
+    if (choice === 1) {
+      const msg = encodeURIComponent('Здравствуйте! Хочу получить подборку домов.' + (name ? '\nМеня зовут ' + name + '.' : '') + '\nМой телефон: ' + phone);
+      window.open('https://wa.me/79264114496?text=' + msg, '_blank');
+    } else if (choice === 2) {
+      window.location.href = 'tel:+79264114469';
+    } else {
+      window.open('https://t.me/viktoriapoltavchenko', '_blank');
+    }
   }
 
   quizRender();
