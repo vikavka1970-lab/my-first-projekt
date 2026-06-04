@@ -1265,8 +1265,8 @@
     let html = '<div class="quiz-q-label">' + step.q + '</div><div class="quiz-options">';
     step.opts.forEach((opt, i) => {
       const sel = qAnswers[qStep] === i ? ' selected' : '';
-      html += '<label class="quiz-option' + sel + '" onclick="quizSelect(' + i + ')">'
-        + '<input type="radio" name="q' + qStep + '" value="' + i + '"' + (qAnswers[qStep] === i ? ' checked' : '') + ' onclick="event.stopPropagation()">'
+      html += '<label class="quiz-option' + sel + '">'
+        + '<input type="radio" name="q' + qStep + '" value="' + i + '"' + (qAnswers[qStep] === i ? ' checked' : '') + ' onchange="quizSelect(' + i + ')">'
         + '<span class="quiz-option-label">' + opt + '</span></label>';
     });
     html += '</div>';
