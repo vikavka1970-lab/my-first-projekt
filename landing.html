@@ -1219,7 +1219,7 @@
       <div class="quiz-form">
         <input class="quiz-input" id="quizName" type="text" placeholder="Ваше имя" />
         <input class="quiz-input" id="quizPhone" type="tel" placeholder="Телефон" />
-        <input class="quiz-input" id="quizContact" type="text" placeholder="Telegram или WhatsApp (необязательно)" />
+        <div id="quizContactRow"><input class="quiz-input" id="quizContact" type="text" placeholder="Telegram или WhatsApp (необязательно)" /></div>
         <button class="quiz-submit" onclick="quizSubmit()">Получить подборку домов</button>
         <p class="quiz-disclaimer">Без обязательств — просто пришлем подходящие варианты и ответим на вопросы</p>
       </div>
@@ -1423,6 +1423,18 @@
     else {
       document.getElementById('quizSteps').style.display = 'none';
       document.getElementById('quizFinal').style.display = 'block';
+      const choice = qAnswers[4];
+      const contactRow = document.getElementById('quizContactRow');
+      const contactInp = document.getElementById('quizContact');
+      if (choice === 0) {
+        contactRow.style.display = '';
+        contactInp.placeholder = 'Ваш Telegram, например @username';
+        contactInp.dataset.required = '1';
+      } else {
+        contactRow.style.display = 'none';
+        contactInp.dataset.required = '0';
+        contactInp.value = '';
+      }
     }
   }
 
@@ -1440,11 +1452,20 @@
   function quizSubmit() {
     const phone = document.getElementById('quizPhone').value.trim();
     const name = document.getElementById('quizName').value.trim();
+    const contactInp = document.getElementById('quizContact');
+    const contact = contactInp.value.trim();
     if (!phone) {
+      contactInp.style.borderColor = '';
       const inp = document.getElementById('quizPhone');
       inp.style.borderColor = '#e74c3c';
       inp.focus();
       inp.addEventListener('input', function() { inp.style.borderColor = ''; }, { once: true });
+      return;
+    }
+    if (contactInp.dataset.required === '1' && !contact) {
+      contactInp.style.borderColor = '#e74c3c';
+      contactInp.focus();
+      contactInp.addEventListener('input', function() { contactInp.style.borderColor = ''; }, { once: true });
       return;
     }
     const contact = document.getElementById('quizContact').value.trim();
